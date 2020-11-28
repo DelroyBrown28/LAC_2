@@ -3,6 +3,6 @@ from django.shortcuts import render
 
 
 def home(request):
-    template = 'home.html'
+    template = 'base.html'
     context = locals()
     return render(request, template, context)
