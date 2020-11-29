@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block pageTitle %}Home //{% endblock pageTitle %}
+{% block styles %}
+<style>
+    .jumbotron {
+        color: red;
+    }
+</style>
+{% endblock styles %}
+{% block jquery %}
+{% endblock jquery %}
+
+
+
+
+
+<!-- NOTE TO SELF:
+    The jumbotron is now inside the block,
+    putting the block tag in another .html page
+    will bring this over -->
+{% block content %}
+<div class="jumbotron">
+    <h1>Hello {{ username_is }}</h1>
+    <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you
+        scroll, this navbar remains in its original position and moves with the rest of the page.</p>
+    <a class="btn btn-lg btn-primary" href="/docs/4.5/components/navbar/" role="button">View navbar docs
+        &raquo;</a>
+</div>
+{% endblock content %}
