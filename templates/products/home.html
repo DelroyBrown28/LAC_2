@@ -36,14 +36,13 @@
 <div class="row">
     {% for product in products  %}
     <div class="col-sm-4">
-        {{ product.id }} - 
         {{ product.title }} -
+        <a href="{% url 'single_product' product.slug %}">{{ product.title }}</a>
         {{ product.price }}.
-        {{ product.slug }}.
         {% for item in product.productimage_set.all %}
 
         {{ item.featured }}
-        <img src="{{ MEDIA_URL }}{{ item.image }}">
+        <img src="{{ product.get_absolute_url}}">
         {% endfor %}
     </div>
     {% endfor %}

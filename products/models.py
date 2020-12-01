@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 import datetime
 
 
@@ -22,6 +23,9 @@ class Product(models.Model):
 
     def get_price(self):
         return self.price
+
+    def get_absolute_url(self):
+        return reverse("single_product", kwargs={"slug": self.slug})
 
 
 class ProductImage(models.Model):
