@@ -39,6 +39,7 @@
         {{ product.id }} - 
         {{ product.title }} -
         {{ product.price }}.
+        {{ product.slug }}.
         {% for item in product.productimage_set.all %}
 
         {{ item.featured }}
