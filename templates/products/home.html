@@ -11,19 +11,40 @@
 {% endblock jquery %}
 
 
-
-
+{% block jumbotron %}
 
 <!-- NOTE TO SELF:
     The jumbotron is now inside the block,
     putting the block tag in another .html page
     will bring this over -->
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Hello {{ username_is }}</h1>
+        <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you
+            scroll, this navbar remains in its original position and moves with the rest of the page.</p>
+        <a class="btn btn-lg btn-primary" href="/docs/4.5/components/navbar/" role="button">View navbar docs
+            &raquo;</a>
+    </div>
+</div>
+
+
+{% endblock jumbotron %}
+
 {% block content %}
-<div class="jumbotron">
-    <h1>Hello {{ username_is }}</h1>
-    <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you
-        scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-    <a class="btn btn-lg btn-primary" href="/docs/4.5/components/navbar/" role="button">View navbar docs
-        &raquo;</a>
+
+<div class="row">
+    {% for product in products  %}
+    <div class="col-sm-4">
+        {{ product.id }} - 
+        {{ product.title }} -
+        {{ product.price }}.
+        {% for item in product.productimage_set.all %}
+
+        {{ item.featured }}
+        <img src="{{ MEDIA_URL }}{{ item.image }}">
+        {% endfor %}
+    </div>
+    {% endfor %}
 </div>
 {% endblock content %}
