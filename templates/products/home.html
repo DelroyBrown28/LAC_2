@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block pageTitle %}Home //{% endblock pageTitle %}
 {% block styles %}
 <!-- <style>
@@ -35,15 +36,36 @@
 
 <div class="row">
     {% for product in products  %}
-    <div class="col-sm-4">
-        {{ product.title }} -
-        <a href="{% url 'single_product' product.slug %}">{{ product.title }}</a>
-        {{ product.price }}.
-        {% for item in product.productimage_set.all %}
 
-        {{ item.featured }}
-        <img src="{{ product.get_absolute_url}}">
-        {% endfor %}
+
+
+    <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+
+            {% if product.productimage_set.all %}
+
+
+            {% for item in product.productimage_set.all %}
+            {% if item.thumbnail %}
+            <img class="img-responsive" src="{{ MEDIA_URL }}{{ item.image }}">
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            <img class="img-responsive" src="{% static 'images/placeholder.svg' %}">
+            {% endif %}
+            <div class="card-body">
+                <a href="{{ product.get_absolute_url }}">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                </a>
+                <p class="card-text">{{ product.description }}</p>
+                <a href="{{ product.get_absolute_url }}" class="btn btn-primary">View</a>
+            </div>
+        </div>
+
+
+
+        <a href="{{ product.get_absolute_url}}">{{ product.title }}</a>
+        {{ product.price }}.
     </div>
     {% endfor %}
 </div>
