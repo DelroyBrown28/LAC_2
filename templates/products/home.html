@@ -47,11 +47,11 @@
 
             {% for item in product.productimage_set.all %}
             {% if item.thumbnail %}
-            <img class="img-responsive" src="{{ MEDIA_URL }}{{ item.image }}">
+            <img class="img-fluid" src="{{ MEDIA_URL }}{{ item.image }}">
+            {% else %}
+            <img class="img-fluid" src="{% static 'images/placeholder.svg' %}">
             {% endif %}
             {% endfor %}
-            {% else %}
-            <img class="img-responsive" src="{% static 'images/placeholder.svg' %}">
             {% endif %}
             <div class="card-body">
                 <a href="{{ product.get_absolute_url }}">
